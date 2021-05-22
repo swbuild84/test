@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engineereing
 {
@@ -57,6 +53,7 @@ namespace Engineereing
             rez = (y2 - y1) / (x2 - x1) * (x - x1) + y1;
 
         }
+
         /// <summary>
         /// Градусы в радианы
         /// </summary>
@@ -66,6 +63,7 @@ namespace Engineereing
         {
             return Math.PI * angle / 180.0;
         }
+
         /// <summary>
         /// Радианы в градусы
         /// </summary>

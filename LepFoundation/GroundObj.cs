@@ -21,7 +21,7 @@ namespace LepFoundation
             }
         }
 
-        Enums.EGroundType _type;
+        Enums.EGroundType _type = Enums.EGroundType.Suglinok;
         /// <summary>
         /// Тип грунта
         /// </summary>
@@ -40,7 +40,10 @@ namespace LepFoundation
             get { return _IL; }
             set
             {
-                if (_type == Enums.EGroundType.Supes || _type == Enums.EGroundType.Suglinok || _type == Enums.EGroundType.Glina) _IL = value;
+                if (_type == Enums.EGroundType.Supes ||
+                    _type == Enums.EGroundType.Suglinok ||
+                    _type == Enums.EGroundType.Glina)
+                    _IL = value;
                 else _IL = 0;
             }
         }
@@ -118,18 +121,6 @@ namespace LepFoundation
             get { return _gamma1; }
             set { _gamma1 = value; }
         }
-        public GroundObj()
-        {
-            this._type = Enums.EGroundType.PesokPilevatiy;
-        }
-
-        /// <summary>
-        /// Расчет расчетной характеристики угла внутренного трения по СНиП
-        /// </summary>
-        public void CalcPhi1()
-        {
-            if (Phi2 > 0) Phi1 = Phi2 / 1.1;
-        }
 
         /// <summary>
         /// Расчет расчетной характеристики угла внутренного трения по СНиП
@@ -151,19 +142,7 @@ namespace LepFoundation
 
         public object Clone()
         {
-            return new GroundObj
-            {
-                C1 = this.C1,
-                C2 = this.C2,
-                E = this.E,
-                Gamma1 = this.Gamma1,
-                Gamma2 = this.Gamma2,
-                IL = this.IL,
-                KoefPoristostiE = this.KoefPoristostiE,
-                Phi1 = this.Phi1,
-                Phi2 = this.Phi2,
-                Type = this.Type
-            };
+            return this.MemberwiseClone();
         }
     }
 }
