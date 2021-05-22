@@ -12,9 +12,9 @@ namespace test
         static void Main(string[] args)
         {
             SupportInGround sup = new SupportInGround();
-            sup.SupportType = ESupportType.AnkerUglKoncevaya;
+            sup.SupportType = Enums.ESupportType.AnkerUglKoncevaya;
             GroundObj gr = new GroundObj();
-            gr.Type = EGroundType.PesokPilevatiy;
+            gr.Type = Enums.EGroundType.PesokPilevatiy;
             gr.IL = 0.5;
             gr.E = 50;            
 
@@ -33,7 +33,7 @@ namespace test
 
             sup.h = 2.5;
 
-            sup.FrictionGroundType = EFrictionGroundType.PESOK_VLAGNIY;
+            sup.FrictionGroundType = Enums.EFrictionGroundType.PESOK_VLAGNIY;
             sup.b0 = 0.17;
             sup.IsDrilled = true;
             

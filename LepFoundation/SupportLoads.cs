@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LepFoundation
+﻿namespace LepFoundation
 {
     /// <summary>
     /// Класс нагрузок на стойку в грунте на уровне заделки в грунт
@@ -35,6 +29,5 @@ namespace LepFoundation
         /// Нормативная Поперечная сила, кН
         /// </summary>
         public double Qn { get; set; }
-     
     }
 }
