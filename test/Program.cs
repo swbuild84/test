@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LepFoundation;
+﻿using LepFoundation;
+using System;
 
 namespace test
 {
@@ -16,7 +12,7 @@ namespace test
             GroundObj gr = new GroundObj();
             gr.Type = Enums.EGroundType.PesokPilevatiy;
             gr.IL = 0.5;
-            gr.E = 50;            
+            gr.E = 50;
 
             gr.Gamma1 = 20.7;
             gr.Phi1 = 34;

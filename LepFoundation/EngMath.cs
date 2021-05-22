@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Engineereing
+namespace LepFoundation
 {
     public static class EngMath
     {
