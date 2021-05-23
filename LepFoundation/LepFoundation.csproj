@@ -44,9 +44,10 @@
     <Compile Include="EngMath.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GroundObj.cs" />
+    <Compile Include="Pole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rigel.cs" />
-    <Compile Include="SupportInGround.cs" />
+    <Compile Include="Calculator.cs" />
     <Compile Include="SupportLoads.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

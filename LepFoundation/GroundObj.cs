@@ -7,6 +7,11 @@ namespace LepFoundation
     /// </summary>
     public class GroundObj : ICloneable
     {
+        /// <summary>
+        /// Тип грунта по прил 4 3041тм т6 для опеределения коэффициента трения
+        /// </summary>
+        public Enums.EFrictionGroundType FrictionGroundType { get; set; }
+
         double _koefPoristostiE;
         /// <summary>
         /// Коэффициент пористости грунта

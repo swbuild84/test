@@ -5,7 +5,7 @@ namespace LepFoundation
     /// <summary>
     /// Стойка в грунте
     /// </summary>
-    public class SupportInGround
+    public class Calculator
     {
         //PRIVATE MEMBERS
         /// <summary>
@@ -41,6 +41,32 @@ namespace LepFoundation
         /// </summary>
         private double ar1;
 
+        /// <summary>
+        /// глубина заделки стойки в грунт, м 
+        /// </summary>
+        private double h { get; set; }
+
+        /// <summary>
+        /// средняя ширина стоики в грунте, м
+        /// </summary>
+        private double b0 { get; set; }
+
+        /// <summary>
+        /// высота банкетки, м
+        /// </summary>
+        private double hb { get; set; }
+
+        /// <summary>
+        /// Тип опоры
+        /// </summary>
+        private Enums.ESupportType SupportType { get; set; }
+
+        /// <summary>
+        /// установка стойки в сверленый или копаный котлован
+        /// </summary>
+        private bool IsDrilled { get; set; } = true;
+        private Rigel m_LoweRigel = null;
+
         private GroundObj m_grnd;
 
         //PUBLIC MEMBERS
@@ -49,46 +75,18 @@ namespace LepFoundation
         /// Нагрузки
         /// </summary>
         public SupportLoads Loads { get; set; }
-        /// <summary>
-        /// глубина заделки стойки в грунт, м 
-        /// </summary>
-        public double h { get; set; }
-        /// <summary>
-        /// средняя ширина стоики в грунте, м
-        /// </summary>
-        public double b0 { get; set; }
-        /// <summary>
-        /// высота банкетки, м
-        /// </summary>
-        public double hb { get; set; }
 
-
-        /// <summary>
-        /// Тип опоры
-        /// </summary>
-        public Enums.ESupportType SupportType { get; set; }
-        /// <summary>
-        /// установка стойки в сверленый или копаный котлован
-        /// </summary>
-        public bool IsDrilled { get; set; } = true;
+        public Pole Pole { get; set; }
         /// <summary>
         /// Грунт средневзвешенные значения
         /// </summary>
-        public GroundObj InputGround { get; set; }
-        /// <summary>
-        /// Тип грунта по прил 4 3041тм т6 для опеределения коэффициента трения
-        /// </summary>
-        public Enums.EFrictionGroundType FrictionGroundType { get; set; }
-
-        private Rigel m_upperRigel = null;
+        public GroundObj InputGround { get; set; }   
 
         /// <summary>
         /// Верхний ригель
         /// </summary>
-        public Rigel UpperRigel { get => m_upperRigel; set => m_upperRigel = value; }
-
-        private Rigel m_LoweRigel = null;
-
+        public Rigel UpperRigel { get; set; }
+        
         /// <summary>
         /// Нижний ригель
         /// </summary>
@@ -108,14 +106,18 @@ namespace LepFoundation
                 }
             }
         }
-
-        public SupportInGround()
-        {
-            this.Loads = new SupportLoads();
-        }
+        
 
         private void Init()
         {
+            if(Pole!=null)
+            {                
+                h = Pole.h;
+                b0 = Pole.b0;
+                hb = Pole.hb;
+                SupportType = Pole.SupportType;
+                IsDrilled = Pole.IsDrilled;
+            }
 
             //Характеристики грунта засыпки в случае копаного котлована принимаются по 
             //указаниям п.6.15 3041тм-т2
@@ -128,12 +130,12 @@ namespace LepFoundation
             else { m_grnd = InputGround; };
 
             //верхний ригель
-            if (m_upperRigel != null)
+            if (UpperRigel != null)
             {
-                lr = m_upperRigel.L;
-                hr = m_upperRigel.B;
-                ar = m_upperRigel.A;
-                yr = m_upperRigel.Yr;
+                lr = UpperRigel.L;
+                hr = UpperRigel.B;
+                ar = UpperRigel.A;
+                yr = UpperRigel.Yr;
             }
 
             //нижний ригель
@@ -156,7 +158,7 @@ namespace LepFoundation
             double H = Loads.Mr / Loads.Qr;
             double omega = 1.0 - 0.003 * m_grnd.C1;
             double alpha = H / h;
-            double f_tr = GetFriction(FrictionGroundType);
+            double f_tr = GetFriction(m_grnd.FrictionGroundType);
             double fd = f_tr * b0 / (2.0 * h);
 
             double m = m_grnd.Gamma1 * Math.Pow(Math.Tan(EngMath.DegreeToRadian(45 + m_grnd.Phi1 / 2.0)), 2);
@@ -218,26 +220,26 @@ namespace LepFoundation
             double alpha = H / h;
             double E = this.InputGround.E * 102;    //перевод МПа в т/м2
 
-            if (this.m_upperRigel == null && this.m_LoweRigel == null)  //безригельное
+            if (this.UpperRigel == null && this.m_LoweRigel == null)  //безригельное
             {
                 double nyu = GetNyu(b0 / h);
                 beta0 = 3 * Q / (4 * E * h * h) * (6 * alpha + 3) * nyu;
             }
-            if (this.m_upperRigel != null && this.m_LoweRigel == null)  //только верхний ригель           
+            if (this.UpperRigel != null && this.m_LoweRigel == null)  //только верхний ригель           
             {
-                double Fb = m_upperRigel.L * m_upperRigel.B;
+                double Fb = UpperRigel.L * UpperRigel.B;
                 double nyuV = GetNyu(b0 / h);
                 beta0 = 3 * Q / (8 * E * h * h) * (6 * alpha + 5) * nyuV;
             }
-            if (this.m_upperRigel != null && this.m_LoweRigel != null)  //верхний и нижний ригель           
+            if (this.UpperRigel != null && this.m_LoweRigel != null)  //верхний и нижний ригель           
             {
-                double Fb = m_upperRigel.L * m_upperRigel.B;
+                double Fb = UpperRigel.L * UpperRigel.B;
                 double Fh = m_LoweRigel.L * m_LoweRigel.B;
                 double nyuV = GetNyu(3 * Fb / (h * h));
                 double nyuN = GetNyu(3 * Fh / (h * h));
                 beta0 = 3 * Q / (8 * E * h * h) * ((6 * alpha + 5) * nyuV + (6 * alpha + 1) * nyuN);
             }
-            if (this.m_upperRigel == null && this.m_LoweRigel != null)  //нижний ригель           
+            if (this.UpperRigel == null && this.m_LoweRigel != null)  //нижний ригель           
             {
                 double Fh = m_LoweRigel.L * m_LoweRigel.B;
                 double nyuN = GetNyu(b0 / h);

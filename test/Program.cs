@@ -7,34 +7,40 @@ namespace test
     {
         static void Main(string[] args)
         {
-            SupportInGround sup = new SupportInGround();
-            sup.SupportType = Enums.ESupportType.AnkerUglKoncevaya;
+            Calculator calc = new Calculator();
+            Pole pole = new Pole();
+            pole.b0= 0.545;
+            pole.h = 3;
+            pole.SupportType = Enums.ESupportType.AnkerUglKoncevaya;
+            pole.IsDrilled = true;
+
+            calc.Pole = pole;
+            
             GroundObj gr = new GroundObj();
             gr.Type = Enums.EGroundType.PesokPilevatiy;
-            gr.IL = 0.5;
+            gr.IL = 0.2;
             gr.E = 50;
 
-            gr.Gamma1 = 20.7;
-            gr.Phi1 = 34;
-            gr.C1 = 5.1;
-            sup.InputGround = gr;
+            gr.Gamma1 = 19.5;
+            gr.Phi1 = 21;
+            gr.C1 = 8.75;
+            gr.FrictionGroundType = Enums.EFrictionGroundType.SUPES_PLAST;
+            calc.InputGround = gr;
 
-            sup.Loads.Nr = 10;
-            sup.Loads.Mr = 46;
-            sup.Loads.Qr = 5.5;
+            SupportLoads loads = new SupportLoads();
 
-            sup.Loads.Nn = 10;
-            sup.Loads.Mn = 46;
-            sup.Loads.Qn = 5.5;
+            loads.Nr = 80;
+            loads.Mr = 192;
+            loads.Qr = 9.6;
 
-            sup.h = 2.5;
+            loads.Nn = 80;
+            loads.Mn = 192;
+            loads.Qn = 9.6;
 
-            sup.FrictionGroundType = Enums.EFrictionGroundType.PESOK_VLAGNIY;
-            sup.b0 = 0.17;
-            sup.IsDrilled = true;
-            
-            Console.WriteLine(sup.CheckFirstPS());
-            Console.WriteLine(sup.CheckSecondPS());
+            calc.Loads = loads;     
+
+            Console.WriteLine(calc.CheckFirstPS());
+            Console.WriteLine(calc.CheckSecondPS());
             Console.ReadKey();
         }
     }
