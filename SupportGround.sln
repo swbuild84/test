@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31313.79
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LepFoundation", "LepFoundation\LepFoundation.csproj", "{046311BE-3BD7-4E1C-BE6B-66B82ED71A11}"
 EndProject
@@ -9,6 +9,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", 
 	ProjectSection(ProjectDependencies) = postProject
 		{046311BE-3BD7-4E1C-BE6B-66B82ED71A11} = {046311BE-3BD7-4E1C-BE6B-66B82ED71A11}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LepPoleInGround", "LepPoleInGround\LepPoleInGround.csproj", "{25711C51-BC95-40D8-84C1-A94322CECCA8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{046311BE-3BD7-4E1C-BE6B-66B82ED71A11} = {046311BE-3BD7-4E1C-BE6B-66B82ED71A11}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBA7400B-4D69-4F31-94F6-DEA0A621E7F0}"
+	ProjectSection(SolutionItems) = preProject
+		Стойка в грунте-Лист1.png = Стойка в грунте-Лист1.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoleInGround", "PoleInGround\PoleInGround.csproj", "{28A14680-05EF-408B-A157-EC664A31B918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +36,14 @@ Global
 		{F9066FDA-00AE-470E-A3D9-FB99288C1DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9066FDA-00AE-470E-A3D9-FB99288C1DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9066FDA-00AE-470E-A3D9-FB99288C1DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25711C51-BC95-40D8-84C1-A94322CECCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25711C51-BC95-40D8-84C1-A94322CECCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25711C51-BC95-40D8-84C1-A94322CECCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25711C51-BC95-40D8-84C1-A94322CECCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A14680-05EF-408B-A157-EC664A31B918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A14680-05EF-408B-A157-EC664A31B918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A14680-05EF-408B-A157-EC664A31B918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A14680-05EF-408B-A157-EC664A31B918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

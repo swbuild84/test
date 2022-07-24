@@ -1,0 +1,155 @@
+﻿<Window x:Class="PoleInGround.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PoleInGround"
+        mc:Ignorable="d"
+        Title="Стойка в грунте" Height="800" Width="1030" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="541*"/>
+            <ColumnDefinition Width="378*"/>
+            <ColumnDefinition Width="105*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="107*"/>
+            <RowDefinition Height="107*"/>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="232*"/>
+            <RowDefinition Height="108*"/>
+        </Grid.RowDefinitions>
+        <Menu Margin="1,0,0,10" Grid.ColumnSpan="3">
+            <MenuItem Header="Файл">
+                <MenuItem x:Name="MenuItemOpen" Header="Открыть" Click="MenuItemOpen_Click"/>
+                <MenuItem x:Name="MenuItemSave" Header="Сохранить" Click="MenuItemSave_Click"/>
+            </MenuItem>
+            <MenuItem Header="Параметры">
+                <MenuItem Header="Единицы измерения"/>
+            </MenuItem>
+        </Menu>
+        <Label Content="Вид опоры" HorizontalAlignment="Left" Height="29" Margin="10,2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="78"/>
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="29" Margin="93,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="580" SelectedIndex="{Binding SupportType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem>1. Нормальные промежуточные прямые</ComboBoxItem>
+            <ComboBoxItem>2. Нормальные прямые анкерные без разности тяжений</ComboBoxItem>
+            <ComboBoxItem>3. Нормальные анкерно-угловые, промежуточные угловые, концевые, анкерные с разностью тяжений и порталы ОРУ</ComboBoxItem>
+            <ComboBoxItem>4. Опоры больших переходов</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Ширина стойки" HorizontalAlignment="Left" Height="29" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="102" Grid.RowSpan="2"/>
+        <Label Content="Заглубление стойки в грунте" HorizontalAlignment="Left" Height="29" Margin="10,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="171"/>
+        <GroupBox x:Name="GroupBoxVerhRigel" HorizontalAlignment="Left" Margin="10,0,0,2" Grid.Row="4" Width="524" Header="Верхний ригель" Height="100" VerticalAlignment="Bottom">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="385*"/>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="62*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="м" Grid.Column="2"/>
+                <Label Content="Расстояние от поверхности грунта до середины высоты ригеля (Zb)" Grid.ColumnSpan="2"/>
+                <Label Content="Ширина ригеля" Grid.Row="1" Grid.ColumnSpan="1"/>
+                <Label Content="Длина ригеля" Grid.Row="2" Grid.ColumnSpan="1"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Margin="0,2"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Grid.Row="1" Margin="0,2"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Grid.Row="2" Margin="0,2"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="2"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="GroupBoxNizhniyRigel" HorizontalAlignment="Left" Margin="10,2,0,2" Grid.Row="5" Width="524" Header="Нижний ригель">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="385*"/>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="62*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="м" Grid.Column="2"/>
+                <Label Content="Расстояние от поверхности грунта до середины высоты ригеля (Zb2)" Grid.ColumnSpan="2"/>
+                <Label Content="Ширина ригеля" Grid.Row="1" Grid.ColumnSpan="1"/>
+                <Label Content="Длина ригеля" Grid.Row="2" Grid.ColumnSpan="1"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Margin="0,2"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Grid.Row="1" Margin="0,2"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Grid.Row="2" Margin="0,2"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="2"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="GroupBoxBanketka" HorizontalAlignment="Left" Margin="10,2,0,2" Grid.Row="6" Width="524" Header="Банкетка">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="385*"/>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="62*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Ширина банкетки" Grid.ColumnSpan="2"/>
+                <Label Content="Длина банкетки" Grid.Row="1" Grid.ColumnSpan="1"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Margin="0,2"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Grid.Row="1" Margin="0,2"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="0"/>
+                <Label Content="м" Grid.Column="2" Grid.Row="1"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Margin="10,2,0,2" Grid.Row="7" Width="524" Header="Нагрузки">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="13*"/>
+                    <RowDefinition Height="13*"/>
+                    <RowDefinition Height="77*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="439*"/>
+                    <ColumnDefinition Width="73*"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.ColumnSpan="2" Grid.Row="2" Margin="0,5,0,2" MinRowHeight="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование загружения" Width="58*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Mр" Width="7*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Qр" Width="7*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nр" Width="7*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Mн" Width="7*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Qн" Width="7*"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nн" Width="7*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <CheckBox Content="Вычислить нормативные нагрузки по расчетным, коэф. надежности" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" Margin="0,2"/>
+                <CheckBox Content="Учесть момент в плоскости, перпендикулярной рассматриваемой" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" Grid.Row="1" Margin="0,2"/>
+            </Grid>
+        </GroupBox>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Margin="208,3,268,2" Grid.Row="2" Text="{Binding PoleDiameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="-5.033,0.368" Margin="208,5,268,4" Grid.Row="3"/>
+        <Label Content="м" Margin="278,36,201,2" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label Content="м" Margin="278,3,201,2" Grid.Row="3"/>
+        <GroupBox Grid.Column="1" Header="Схема закрепления" Grid.Row="4" Grid.RowSpan="2" Margin="2,2,2,64">
+            <StackPanel>
+                <RadioButton IsChecked="True" Margin="3" Name="RadioButton1" Checked="RadioButton1_Checked">сверленый котлован</RadioButton>
+                <RadioButton Margin="3" Name="RadioButton2" Checked="RadioButton2_Checked">сверленый котлован с верхним ригелем</RadioButton>
+                <RadioButton Margin="3" Name="RadioButton3" Checked="RadioButton3_Checked">копаный котлован с верхним ригелем</RadioButton>
+                <RadioButton Margin="3" Name="RadioButton4" Checked="RadioButton4_Checked">копаный котлован с верхним и нижним ригелями</RadioButton>
+                <RadioButton Margin="3" Name="RadioButton5" Checked="RadioButton5_Checked">сверленый котлован с верхним ригелем в банкетке</RadioButton>
+                <RadioButton Margin="3" Name="RadioButton6" Checked="RadioButton6_Checked">копаный котлован с верхним ригелем в банкетке и нижним</RadioButton>
+            </StackPanel>
+        </GroupBox>
+        <Image x:Name="PictureBox1" Grid.Column="1" HorizontalAlignment="Left" Height="337" Margin="73,59,0,0" Grid.Row="5" Grid.RowSpan="3" VerticalAlignment="Top" Width="274" Stretch="UniformToFill"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="53" Margin="63,34,0,0" Grid.Row="8" VerticalAlignment="Top" Width="152" Click="Button_Click"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="262,34,0,0" Grid.Row="8" VerticalAlignment="Top" Width="85" Click="Button_Click_1"/>
+    </Grid>
+</Window>
